@@ -1,0 +1,57 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "02f3ad2259216373ef844040fe3734e5",
+    "entities": [
+      {
+        "tableName": "LocationHistory",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`LocationHistoryId` TEXT NOT NULL, `LocationHistoryDeviceId` TEXT, `LocationHistoryDateTime` TEXT, `LocationHistoryLatitude` REAL, `LocationHistoryLongitude` REAL, PRIMARY KEY(`LocationHistoryId`))",
+        "fields": [
+          {
+            "fieldPath": "LocationHistoryId",
+            "columnName": "LocationHistoryId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "DeviceId",
+            "columnName": "LocationHistoryDeviceId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "DateTime",
+            "columnName": "LocationHistoryDateTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "Latitude",
+            "columnName": "LocationHistoryLatitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "Longitude",
+            "columnName": "LocationHistoryLongitude",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "LocationHistoryId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"02f3ad2259216373ef844040fe3734e5\")"
+    ]
+  }
+}
