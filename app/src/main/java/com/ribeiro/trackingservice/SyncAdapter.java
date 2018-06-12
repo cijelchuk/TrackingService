@@ -127,8 +127,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
                         mDbHelper = new LocationHistoryDbHelper(mContext);
                         if (mDbHelper.deleteOneHandler(loc1.getId())) {
                             Log.d(TAG, "deleted ok");
-                        };
-                    };
+                        }
+                    }
 
 
                 }

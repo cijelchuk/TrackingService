@@ -53,11 +53,11 @@ public class DeviceUuidFactory
                                 if(deviceId == null)
                                 {
                                     uuid = UUID.randomUUID();
-                                    prefs.edit().putString(PREFS_DEVICE_ID, uuid.toString()).commit();
+                                    prefs.edit().putString(PREFS_DEVICE_ID, uuid.toString()).apply();
 
                                 }else{
                                     uuid = deviceId != null ? UUID.nameUUIDFromBytes(deviceId.getBytes("utf8")) : UUID.randomUUID();
-                                    prefs.edit().putString(PREFS_DEVICE_ID, uuid.toString()).commit();
+                                    prefs.edit().putString(PREFS_DEVICE_ID, uuid.toString()).apply();
 
                                 }
                             }

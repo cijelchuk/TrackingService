@@ -14,7 +14,7 @@
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="22dp"
         android:layout_marginStart="16dp"
-        android:text="Refresh"
+        android:text="@string/refresh"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="47dp"
         android:layout_marginTop="28dp"
-        android:text="nothing to show..."
+        android:text="@string/nothing_to_show"
         app:layout_constraintStart_toStartOf="@+id/scrollView2"
         app:layout_constraintTop_toTopOf="@+id/scrollView2" />
 
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="22dp"
         android:layout_marginEnd="92dp"
-        android:text="Restart Services"
+        android:text="@string/restart_services"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"

@@ -5,6 +5,7 @@ import android.location.Location;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.UUID;
 
 
@@ -28,7 +29,7 @@ public class LocationHistory {
         factory = new DeviceUuidFactory(context);
         this.setDeviceId(factory.getDeviceUuid().toString());
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
         String datetime = dateformat.format(c.getTime());
         this.setDateTime(datetime);
         this.setLatitude(location.getLatitude());
@@ -52,7 +53,7 @@ public class LocationHistory {
     public void setLatitude(Double latitude) {Latitude = latitude; }
     public void setLongitude(Double longitude) {Longitude = longitude; }
     public void setLocation() {
-        Location = this.getLatitude().toString()+","+ this.getLongitude().toString();;
+        Location = this.getLatitude().toString()+","+ this.getLongitude().toString();
     }
     public void setMessage(String message) { Message = message; }
     //getters

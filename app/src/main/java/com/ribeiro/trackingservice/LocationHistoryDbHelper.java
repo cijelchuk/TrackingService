@@ -75,6 +75,7 @@ public class LocationHistoryDbHelper extends SQLiteOpenHelper {
                 list.add(loc);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return list;
     }

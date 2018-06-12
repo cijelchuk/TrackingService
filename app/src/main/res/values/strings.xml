@@ -28,6 +28,10 @@
 
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
+    <string name="preferences">Preferences</string>
+    <string name="refresh">Refresh</string>
+    <string name="nothing_to_show">nothing to show...</string>
+    <string name="restart_services">Restart Services</string>
     <string-array name="pref_gps_distance_titles">
         <item>10 meters</item>
         <item>50 meters</item>
