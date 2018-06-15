@@ -148,6 +148,8 @@ public class TrackingStatus extends AppCompatActivity {
 
     }
 
+
+
     private void restartServices() {
         final TextView texto = (TextView) findViewById(R.id.textView1);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -219,7 +221,7 @@ public class TrackingStatus extends AppCompatActivity {
              * The account exists or some other error occurred. Log this, report it,
              * or handle it internally.
              */
-            Log.e(TAG,"The account exists or some other error occurred.");
+            Log.d(TAG,"The account exists or some other error occurred.");
             return newAccount;
         }
     }

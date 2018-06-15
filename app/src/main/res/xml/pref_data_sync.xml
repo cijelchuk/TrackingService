@@ -20,7 +20,7 @@
 
     <EditTextPreference
         android:id="@+id/servicesUrl"
-        android:defaultValue="http://server/GeolocationTest.NetEnvironment/rest/LocationHistory/"
+        android:defaultValue="http://server/Comercial15/rest/LocationHistory/"
         android:key="servicesUrl"
         android:selectAllOnFocus="false"
         android:singleLine="true"
