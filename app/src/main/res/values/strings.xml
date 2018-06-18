@@ -32,6 +32,12 @@
     <string name="refresh">Refresh</string>
     <string name="nothing_to_show">nothing to show...</string>
     <string name="restart_services">Restart Services</string>
+    <string name="permission_read_phone_state_rationale">Necesario para sincronizar los datos.</string>
+    <string name="permission_location_state_rationale">Necesario para poder registrar la ubicación</string>
+    <string name="permision_available_camera">Acceso a Ubicación</string>
+    <string name="permissions_not_granted">Permiso denegado a Ubicación</string>
+    <string name="permision_available_contacts">Necesario para realizar Sincronización</string>
+    <string name="permision_available_readPhoneState">Permiso para acceder al estado del equipo.</string>
     <string-array name="pref_gps_distance_titles">
         <item>10 meters</item>
         <item>50 meters</item>

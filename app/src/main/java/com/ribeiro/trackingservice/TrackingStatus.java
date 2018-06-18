@@ -9,10 +9,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
@@ -26,10 +29,13 @@ import com.google.common.base.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+
+
 
 //this is the main class
-public class TrackingStatus extends AppCompatActivity {
+public class TrackingStatus extends AppCompatActivity
+        implements ActivityCompat.OnRequestPermissionsResultCallback
+{
 
     // Constants
     // The authority for the sync adapter's content provider
@@ -38,7 +44,7 @@ public class TrackingStatus extends AppCompatActivity {
     //public static final String ACCOUNT_TYPE = "example.com";
     public static final String ACCOUNT_TYPE = "com.ribeiro.trackingservice.datasync";
     // The account name
-    public static  final String ACCOUNT = "default_account";
+    public static  final String ACCOUNT = "ribeiro_tracking";
     // Instance fields
     Account mAccount;
 
@@ -57,16 +63,19 @@ public class TrackingStatus extends AppCompatActivity {
     // Global variables
     // A content resolver for accessing the provider
     ContentResolver mResolver;
+    //variables para almacenar los permisos que se solicitan al usuario para ejecutar la app
+    private static int REQUEST_LOCATION = 0;
+    private static int REQUEST_READ_PHONE_STATE = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         boolean hasPermission = false;
 
-        int MY_PERMISSIONS_REQUEST_LOCATION = 0;
+
         super.onCreate(savedInstanceState);
-        // Create the dummy account
-        //mAccount = CreateSyncAccount(this);
 
         /*
          * Create the dummy account. The code for CreateSyncAccount
@@ -98,7 +107,11 @@ public class TrackingStatus extends AppCompatActivity {
         setContentView(R.layout.activity_tracking_status);
 
         final TextView texto = (TextView) findViewById(R.id.textView1);
+        texto.setMovementMethod(new ScrollingMovementMethod());
         texto.setText(refresh());
+
+
+
 
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -118,33 +131,12 @@ public class TrackingStatus extends AppCompatActivity {
 
 
 
-        // Here, thisActivity is the current activity
-        // request the permission
-        // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-        // app-defined int constant. The callback method gets the
-        // result of the request.
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                MY_PERMISSIONS_REQUEST_LOCATION);
-            hasPermission = false;
+        checkPermission();
+        if (REQUEST_READ_PHONE_STATE == 1 && REQUEST_LOCATION == 1){
+            startService(new Intent(this, trackSrv.class));
+            // Ensure the right menu is setup
+            moveTaskToBack(true);
         }
-
-        else {
-            // Permission has already been granted
-            hasPermission = true;
-        }
-        if (hasPermission){
-            startService(new Intent(this, trackSrv.class));}
-        else{
-            Log.d(TAG, "Application needs permission to access Location Provider services");
-            closeApplication(this);
-        }
-        // Ensure the right menu is setup
-        moveTaskToBack(true);
 
     }
 
@@ -152,6 +144,7 @@ public class TrackingStatus extends AppCompatActivity {
 
     private void restartServices() {
         final TextView texto = (TextView) findViewById(R.id.textView1);
+        texto.setMovementMethod(new ScrollingMovementMethod());
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String SyncMinutes= "";
         String message ="";
@@ -238,14 +231,16 @@ public class TrackingStatus extends AppCompatActivity {
             tmp.append("Time: ");
             tmp.append(loc1.getDateTime());
             tmp.append(System.getProperty ("line.separator"));
-            tmp.append("Location:");
+            tmp.append("Location: ");
             tmp.append(loc1.getLocation());
             tmp.append(System.getProperty ("line.separator"));
-            tmp.append("Message:");
+            tmp.append("Message: ");
             tmp.append(loc1.getMessage());
             tmp.append(System.getProperty ("line.separator"));
+            tmp.append("----------");
+            tmp.append(System.getProperty ("line.separator"));
             locationstxt += tmp.toString();
-            //locationstxt += String.format().getLocation() + System.getProperty ("line.separator");
+
         }
 
         if (locationstxt.isEmpty()){
@@ -281,5 +276,53 @@ public class TrackingStatus extends AppCompatActivity {
     private void showPreferences() {
         Intent myIntent = new Intent(this, SettingsActivity.class);
         startActivity(myIntent);
+    }
+
+    private void checkPermission(){
+
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_FINE_LOCATION};
+
+        if(!hasPermissions(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
+        else{
+            REQUEST_LOCATION = 1;
+            REQUEST_READ_PHONE_STATE = 1;
+        }
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    restartServices();
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Log.d(TAG, "Permission denied.");
+                    closeApplication(this);
+                }
+                return;
+            }
+        }
     }
 }
