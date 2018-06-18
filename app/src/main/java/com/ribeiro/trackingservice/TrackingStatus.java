@@ -23,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.common.base.Strings;
@@ -129,7 +130,8 @@ public class TrackingStatus extends AppCompatActivity
             }
         });
 
-
+        ImageView mImageView = (ImageView) findViewById(R.id.imageRibeiro);
+       // mImageView.setImageResource(R.drawable.ic_logoribeiro2);
 
         checkPermission();
         if (REQUEST_READ_PHONE_STATE == 1 && REQUEST_LOCATION == 1){
