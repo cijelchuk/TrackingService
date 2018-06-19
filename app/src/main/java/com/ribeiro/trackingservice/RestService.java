@@ -18,8 +18,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class RestService {
-    static String TAG = "RIBEIROTRACKING_RestService";
+class RestService {
+    private static final String TAG = "RIBEIRO_RestService";
     private URL EndPoint ;
     private String HTTPMethod;
 

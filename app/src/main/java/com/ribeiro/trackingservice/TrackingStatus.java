@@ -9,15 +9,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,30 +36,30 @@ public class TrackingStatus extends AppCompatActivity
 
     // Constants
     // The authority for the sync adapter's content provider
-    public static final String AUTHORITY = "com.ribeiro.trackingservice.datasync.provider";
+    private static final String AUTHORITY = "com.ribeiro.trackingservice.datasync.provider";
     // An account type, in the form of a domain name
     //public static final String ACCOUNT_TYPE = "example.com";
-    public static final String ACCOUNT_TYPE = "com.ribeiro.trackingservice.datasync";
+    private static final String ACCOUNT_TYPE = "com.ribeiro.trackingservice.datasync";
     // The account name
-    public static  final String ACCOUNT = "ribeiro_tracking";
+    private static  final String ACCOUNT = "ribeiro_tracking";
     // Instance fields
-    Account mAccount;
+    private Account mAccount;
 
 
-    static String TAG = "RIBEIROTRACKING_TrackingStatus";
+    private static final String TAG = "RIBEIRO_Main";
     // Constants
 
     // Sync interval constants
-    public static final long SECONDS_PER_MINUTE = 60L;
-    public static long SYNC_INTERVAL_IN_MINUTES = 15L; //15 minutos es el minimo
-    public static long SYNC_INTERVAL = SYNC_INTERVAL_IN_MINUTES * SECONDS_PER_MINUTE;
+    private static final long SECONDS_PER_MINUTE = 60L;
+    private static long SYNC_INTERVAL_IN_MINUTES = 15L; //15 minutos es el minimo
+    private static long SYNC_INTERVAL = SYNC_INTERVAL_IN_MINUTES * SECONDS_PER_MINUTE;
 
 
 
 
     // Global variables
     // A content resolver for accessing the provider
-    ContentResolver mResolver;
+    private ContentResolver mResolver;
     //variables para almacenar los permisos que se solicitan al usuario para ejecutar la app
     private static int REQUEST_LOCATION = 0;
     private static int REQUEST_READ_PHONE_STATE = 0;
@@ -107,7 +103,7 @@ public class TrackingStatus extends AppCompatActivity
 
         setContentView(R.layout.activity_tracking_status);
 
-        final TextView texto = (TextView) findViewById(R.id.textView1);
+        final TextView texto = findViewById(R.id.textView1);
         texto.setMovementMethod(new ScrollingMovementMethod());
         texto.setText(refresh());
 
@@ -118,7 +114,7 @@ public class TrackingStatus extends AppCompatActivity
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                final TextView texto = (TextView) findViewById(R.id.textView1);
+                final TextView texto = findViewById(R.id.textView1);
                 texto.setText(refresh());
             }
         });
@@ -130,7 +126,7 @@ public class TrackingStatus extends AppCompatActivity
             }
         });
 
-        ImageView mImageView = (ImageView) findViewById(R.id.imageRibeiro);
+        ImageView mImageView = findViewById(R.id.imageRibeiro);
        // mImageView.setImageResource(R.drawable.ic_logoribeiro2);
 
         checkPermission();
@@ -145,7 +141,7 @@ public class TrackingStatus extends AppCompatActivity
 
 
     private void restartServices() {
-        final TextView texto = (TextView) findViewById(R.id.textView1);
+        final TextView texto = findViewById(R.id.textView1);
         texto.setMovementMethod(new ScrollingMovementMethod());
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String SyncMinutes= "";
@@ -185,7 +181,7 @@ public class TrackingStatus extends AppCompatActivity
      *
      * @param context The application context
      */
-    public static Account CreateSyncAccount(Context context) {
+    private static Account CreateSyncAccount(Context context) {
         // Create the account type and default account
         Account newAccount = new Account( ACCOUNT, ACCOUNT_TYPE);
         // Get an instance of the Android account manager
@@ -251,7 +247,7 @@ public class TrackingStatus extends AppCompatActivity
         return locationstxt;
     }
 
-    public void closeApplication(TrackingStatus view) {
+    private void closeApplication(TrackingStatus view) {
         finish();
         moveTaskToBack(true);
     }
@@ -294,7 +290,7 @@ public class TrackingStatus extends AppCompatActivity
         }
     }
 
-    public static boolean hasPermissions(Context context, String... permissions) {
+    private static boolean hasPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -323,7 +319,6 @@ public class TrackingStatus extends AppCompatActivity
                     Log.d(TAG, "Permission denied.");
                     closeApplication(this);
                 }
-                return;
             }
         }
     }

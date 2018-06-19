@@ -1,11 +1,9 @@
 package com.ribeiro.trackingservice;
 
 import android.app.Service;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -15,12 +13,8 @@ import android.util.Log;
 
 import com.google.common.base.Strings;
 
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.UUID;
-
 public class trackSrv extends Service{
-    private static final String TAG = "RIBEIROTRACKING_trackSrv";
+    private static final String TAG = "RIBEIRO_trackSrv";
     private LocationManager mLocationManager = null;
     private static int LOCATION_INTERVAL = 600000; //10 minutos
     private static float LOCATION_DISTANCE = 100f; //100 metros la f es de float
@@ -69,7 +63,7 @@ public class trackSrv extends Service{
 
 
 
-        public LocationListener(String provider)
+        LocationListener(String provider)
         {
             Log.d(TAG, "LocationListener " + provider);
             mLastLocation = new Location(provider);
@@ -108,7 +102,7 @@ public class trackSrv extends Service{
         }
     }
 
-    LocationListener[] mLocationListeners = new LocationListener[] {
+    private LocationListener[] mLocationListeners = new LocationListener[] {
             new LocationListener(LocationManager.GPS_PROVIDER),
             new LocationListener(LocationManager.NETWORK_PROVIDER)
     };

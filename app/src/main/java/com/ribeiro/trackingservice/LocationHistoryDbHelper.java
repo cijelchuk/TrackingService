@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +12,11 @@ import java.util.List;
 
 public class LocationHistoryDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 2;
-    public static final String DATABASE_NAME = "LocationHistory.db";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "LocationHistory.db";
     private static LocationHistoryDbHelper sInstance;
     private final SQLiteDatabase db;
-    static String TAG = "RIBEIROTRACKING_LocationHistoryDbHelper";
+    static String TAG = "RIBEIRO_DbHelper";
 
     public static synchronized LocationHistoryDbHelper getInstance(Context context) {
 

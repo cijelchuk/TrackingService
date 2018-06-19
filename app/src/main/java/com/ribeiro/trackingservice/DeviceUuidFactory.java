@@ -13,12 +13,12 @@ import android.util.Log;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
-public class DeviceUuidFactory {
-    protected static final String PREFS_FILE = "device_id.xml";
-    protected static final String PREFS_DEVICE_ID = "device_id";
-    static String TAG = "RIBEIROTRACKING_deviceUUID";
+class DeviceUuidFactory {
+    private static final String PREFS_FILE = "device_id.xml";
+    private static final String PREFS_DEVICE_ID = "device_id";
+    private static final String TAG = "RIBEIRO_deviceUUID";
 
-    protected static UUID uuid;
+    private static UUID uuid;
 
     @SuppressWarnings("deprecation")
     public DeviceUuidFactory(Context context) {

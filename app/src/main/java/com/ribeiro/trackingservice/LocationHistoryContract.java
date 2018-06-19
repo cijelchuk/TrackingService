@@ -2,7 +2,7 @@ package com.ribeiro.trackingservice;
 
 import android.provider.BaseColumns;
 
-public final class LocationHistoryContract {
+final class LocationHistoryContract {
     // To prevent someone from accidentally instantiating the contract class,
     // make the constructor private.
     private LocationHistoryContract(){}

@@ -11,7 +11,7 @@ import android.os.Bundle;
  * Implement AbstractAccountAuthenticator and stub out all
  * of its methods
  */
-public class Authenticator extends AbstractAccountAuthenticator {
+class Authenticator extends AbstractAccountAuthenticator {
     // Simple constructor
     public Authenticator(Context context) {
         super(context);
@@ -29,7 +29,7 @@ public class Authenticator extends AbstractAccountAuthenticator {
             String s,
             String s2,
             String[] strings,
-            Bundle bundle) throws NetworkErrorException {
+            Bundle bundle) {
         return null;
     }
     // Ignore attempts to confirm credentials
@@ -37,7 +37,7 @@ public class Authenticator extends AbstractAccountAuthenticator {
     public Bundle confirmCredentials(
             AccountAuthenticatorResponse r,
             Account account,
-            Bundle bundle) throws NetworkErrorException {
+            Bundle bundle) {
         return null;
     }
     // Getting an authentication token is not supported
@@ -46,7 +46,7 @@ public class Authenticator extends AbstractAccountAuthenticator {
             AccountAuthenticatorResponse r,
             Account account,
             String s,
-            Bundle bundle) throws NetworkErrorException {
+            Bundle bundle) {
         throw new UnsupportedOperationException();
     }
     // Getting a label for the auth token is not supported
@@ -59,14 +59,14 @@ public class Authenticator extends AbstractAccountAuthenticator {
     public Bundle updateCredentials(
             AccountAuthenticatorResponse r,
             Account account,
-            String s, Bundle bundle) throws NetworkErrorException {
+            String s, Bundle bundle) {
         throw new UnsupportedOperationException();
     }
     // Checking features for the account is not supported
     @Override
     public Bundle hasFeatures(
             AccountAuthenticatorResponse r,
-            Account account, String[] strings) throws NetworkErrorException {
+            Account account, String[] strings) {
         throw new UnsupportedOperationException();
     }
 }

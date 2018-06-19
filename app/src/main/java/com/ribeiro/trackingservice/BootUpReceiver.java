@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 
 public class BootUpReceiver extends BroadcastReceiver {
-    static String TAG = "RIBEIROTRACKING_BootUpReceiver";
+    private static final String TAG = "RIBEIRO_BootUpReceiver";
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, TrackingStatus.class);  //MyActivity can be anything which you want to start on bootup...

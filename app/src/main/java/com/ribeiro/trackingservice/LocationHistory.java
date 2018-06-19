@@ -2,15 +2,15 @@ package com.ribeiro.trackingservice;
 
 import android.content.Context;
 import android.location.Location;
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.UUID;
 
 
-public class LocationHistory {
-    private static final String TAG = "RIBEIROTRACKING_LocationHistory";
+class LocationHistory {
+    private static final String TAG = "RIBEIRO_LocHis";
     private String Id;
     private String DeviceId;
     private String DateTime;
