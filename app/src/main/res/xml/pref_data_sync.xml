@@ -1,8 +1,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it. -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:id="@+id/codigoSucursal"
+        android:defaultValue="019"
+        android:key="codigoSucursal"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="Codigo de Sucursal"
+        android:title="Codigo de Sucursal" />
+
+
     <ListPreference
         android:defaultValue="15"
         android:entries="@array/pref_sync_frequency_titles"
@@ -18,15 +26,25 @@
         <intent android:action="android.settings.SYNC_SETTINGS" />
     </Preference>
 
+    <SwitchPreference
+        android:key="TestMode"
+        android:summaryOff="Test Mode OFF."
+        android:summaryOn="Test Mode ON."
+        android:switchTextOff="Set Test Mode OFF."
+        android:switchTextOn="Set Test Mode ON."
+        android:persistent="true"/>
+
     <EditTextPreference
         android:id="@+id/servicesUrl"
-        android:defaultValue="http://server/Comercial15/rest/LocationHistory/"
+        android:dependency="TestMode"
+        android:defaultValue="http://server/Comercial15i/rest/LocationHistory/"
         android:key="servicesUrl"
         android:selectAllOnFocus="false"
         android:singleLine="true"
         android:persistent="true"
         android:summary="Service URL Summary..."
         android:title="Services URL" />
+
     <ListPreference
         android:id="@+id/GPSDistance"
         android:defaultValue="100"
@@ -36,6 +54,7 @@
         android:persistent="true"
         android:summary="GPS Distance in meters"
         android:title="GPS Distance" />
+
     <ListPreference
         android:id="@+id/GPSTime"
         android:defaultValue="10"
@@ -45,4 +64,25 @@
         android:persistent="true"
         android:summary="GPS time in minutes"
         android:title="GPS Time" />
+
+    <EditTextPreference
+        android:id="@+id/initialTime"
+        android:defaultValue="9"
+        android:key="initialTime"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="Initial time to start tracking."
+        android:title="Initial Time" />
+
+    <EditTextPreference
+        android:id="@+id/endingTime"
+        android:defaultValue="18"
+        android:key="endingTime"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="Time to end tracking."
+        android:title="Ending Time" />
+
 </PreferenceScreen>

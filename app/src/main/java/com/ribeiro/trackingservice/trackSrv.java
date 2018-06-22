@@ -13,47 +13,106 @@ import android.util.Log;
 
 import com.google.common.base.Strings;
 
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.Date;
+
 public class trackSrv extends Service{
     private static final String TAG = "RIBEIRO_trackSrv";
     private LocationManager mLocationManager = null;
     private static int LOCATION_INTERVAL = 600000; //10 minutos
     private static float LOCATION_DISTANCE = 100f; //100 metros la f es de float
 
-    private void saveLocationError(Location location, String message){
-        //creates a LocationHistory Class with the assigned Location
-        LocationHistory loc = new LocationHistory(location, message, getApplicationContext());
-        //inserta el registro en la bb local.
-        try {
-
-            // Gets the data repository in write mode
-            LocationHistoryDbHelper mDbHelper = new LocationHistoryDbHelper(getApplicationContext());
-            mDbHelper.addHandler(loc);
-            Log.d(TAG, "location saved:"+loc.getId());
+    private Boolean timeIsEnabled() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String initStr = sharedPref.getString("initialTime", "9");
+        Integer init = Integer.valueOf(initStr);
+        if ((init < 1 || init > 23)&&(init == 0)){
+            init = 9;
+            Log.d(TAG,"Initial time is not correct, default value set to 9.");
         }
-        catch (Exception e)
-        {
-            Log.d(TAG, "Error inserting Location.saveLocationError");
-            Log.d(TAG, e.getMessage());
+        Calendar calIni = Calendar.getInstance();
+
+        calIni.set(Calendar.HOUR_OF_DAY,init);
+        calIni.set(Calendar.MINUTE,0);
+        calIni.set(Calendar.SECOND,0);
+        calIni.set(Calendar.MILLISECOND,0);
+        Date initialTime = calIni.getTime();
+
+        Calendar calEnd = Calendar.getInstance();
+        String endStr = sharedPref.getString("endingTime", "18");
+        Integer end = Integer.valueOf(endStr);
+        if ((end < 1 || end > 23)&&(end ==0)){
+            end = 18;
+            Log.d(TAG,"Ending time is not correct, default value set to 18.");
+        }
+        if (init > end){
+            init = 9;
+            end = 18;
+            Log.d(TAG,"Initial / Ending time is not correct, default period set 9-18.");
+        }
+        calEnd.set(Calendar.HOUR_OF_DAY,end);
+        calEnd.set(Calendar.MINUTE,0);
+        calEnd.set(Calendar.SECOND,0);
+        calEnd.set(Calendar.MILLISECOND,0);
+        Date endingTime = calEnd.getTime();
+
+        Calendar now = Calendar.getInstance();
+        Date nowDate = now.getTime();
+
+
+        Log.d(TAG,"initial time:"+ initialTime.toString());
+        Log.d(TAG,"ending time:"+ endingTime.toString());
+
+        if ( initialTime.before( nowDate ) && endingTime.after(nowDate)) {
+            Log.d(TAG, "Traking period is enabled.");
+            return Boolean.TRUE;
+        } else {
+            Log.d(TAG, "Tracking period is disabled.");
+            return Boolean.FALSE;
+        }
+    }
+    private void saveLocationError(Location location, String message){
+        //check if time is enabled
+        if (timeIsEnabled()) {
+            //creates a LocationHistory Class with the assigned Location
+            LocationHistory loc = new LocationHistory(location, message, getApplicationContext());
+            //inserta el registro en la bb local.
+            try {
+
+                // Gets the data repository in write mode
+                LocationHistoryDbHelper mDbHelper = new LocationHistoryDbHelper(getApplicationContext());
+                mDbHelper.addHandler(loc);
+                Log.d(TAG, "location saved:" + loc.getId());
+            } catch (Exception e) {
+                Log.d(TAG, "Error inserting Location.saveLocationError");
+                Log.d(TAG, e.getMessage());
+            }
+        }else{
+            Log.d(TAG,"Time not enabled to log location.");
         }
     }
 
     private void saveLocation(Location location){
-        //creates a LocationHistory Class with the assigned Location
-        String message = "ok";
-        LocationHistory loc = new LocationHistory(location, message, getApplicationContext());
+        //check if time is enabled
+        if (timeIsEnabled()) {
+            //creates a LocationHistory Class with the assigned Location
+            String message = "ok";
+            LocationHistory loc = new LocationHistory(location, message, getApplicationContext());
 
-        //inserta el registro en la bb local.
-        try {
+            //inserta el registro en la bb local.
+            try {
 
-            // Gets the data repository in write mode
-            LocationHistoryDbHelper mDbHelper = new LocationHistoryDbHelper(getApplicationContext());
-            mDbHelper.addHandler(loc);
-            Log.d(TAG, "location saved:"+loc.getId());
-        }
-        catch (Exception e)
-        {
-            Log.d(TAG, "Error inserting Location.");
-            Log.d(TAG, e.getMessage());
+                // Gets the data repository in write mode
+                LocationHistoryDbHelper mDbHelper = new LocationHistoryDbHelper(getApplicationContext());
+                mDbHelper.addHandler(loc);
+                Log.d(TAG, "location saved:" + loc.getId());
+            } catch (Exception e) {
+                Log.d(TAG, "Error inserting Location.");
+                Log.d(TAG, e.getMessage());
+            }
+        }else{
+            Log.d(TAG,"Time not enabled to log location.");
         }
     }
 
@@ -203,6 +262,5 @@ public class trackSrv extends Service{
             mLocationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         }
     }
-
 
 }

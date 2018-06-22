@@ -29,6 +29,7 @@ import java.util.List;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
+
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -155,6 +156,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("servicesUrl"));
             bindPreferenceSummaryToValue(findPreference("GPSTime"));
             bindPreferenceSummaryToValue(findPreference("GPSDistance"));
+            bindPreferenceSummaryToValue(findPreference("initialTime"));
+            bindPreferenceSummaryToValue(findPreference("endingTime"));
+            bindPreferenceSummaryToValue(findPreference("codigoSucursal"));
         }
 
         @Override
@@ -167,4 +171,5 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
 }

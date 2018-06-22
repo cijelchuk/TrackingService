@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import junit.framework.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
     // Define a variable to contain a content resolver instance
     private ContentResolver mContentResolver;
     private Context mContext;
+    private String serviceURL;
 
     /**
      * Set up the sync adapter
@@ -37,6 +40,7 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
          */
         mContentResolver = context.getContentResolver();
         mContext = context;
+        configureServiceURL();
     }
 
     /**
@@ -55,6 +59,7 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
          */
         mContentResolver = context.getContentResolver();
         mContext = context;
+        configureServiceURL();
 
     }
 
@@ -74,13 +79,8 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
         /*
          * Put the data transfer code here.
          */
+        configureServiceURL();
         Log.d(TAG, "inicio onPerformSync...");
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
-        String serviceURL = "";
-        serviceURL = sharedPref.getString("servicesUrl", "");
-      //  String serviceURL = syncConnPref; //"http://172.18.6.103/GeolocationTest.NetEnvironment/rest/LocationHistory/";
-        Log.d(TAG,"service"+serviceURL);
-
         //graba el registro en el server
         String endPoint = "";
         if (serviceURL.isEmpty()) {
@@ -125,6 +125,25 @@ class SyncAdapter extends AbstractThreadedSyncAdapter {
 
 
     }
+    public void configureServiceURL(){
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String codigoSucursal = sharedPref.getString("codigoSucursal", "");
+        Boolean TestMode = sharedPref.getBoolean("TestMode",Boolean.FALSE);
+        if (TestMode == Boolean.TRUE){
+            serviceURL = sharedPref.getString("servicesUrl","");
+            Log.d(TAG,"Test Mode On");
+        }else{
+            serviceURL = "http://web"+ codigoSucursal.trim()+".ribeiront.net.ar/rest/LocationHistory/";
+            Log.d(TAG,"Test Mode Off");
+            Log.d(TAG,"Sucursal: " + codigoSucursal);
+        }
+
+
+        //  String serviceURL = syncConnPref; //"http://172.18.6.103/GeolocationTest.NetEnvironment/rest/LocationHistory/";
+        Log.d(TAG,"Service URL: "+serviceURL);
+
+
+    }
 
 }
