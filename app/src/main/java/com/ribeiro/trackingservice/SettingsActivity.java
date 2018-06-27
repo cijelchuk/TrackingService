@@ -159,6 +159,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("initialTime"));
             bindPreferenceSummaryToValue(findPreference("endingTime"));
             bindPreferenceSummaryToValue(findPreference("codigoSucursal"));
+            bindPreferenceSummaryToValue(findPreference("workingDays"));
         }
 
         @Override

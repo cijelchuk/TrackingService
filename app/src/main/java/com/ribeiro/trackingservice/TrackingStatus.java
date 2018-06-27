@@ -25,6 +25,8 @@ import android.widget.TextView;
 
 import com.google.common.base.Strings;
 
+import junit.framework.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,9 +138,32 @@ public class TrackingStatus extends AppCompatActivity
             // Ensure the right menu is setup
             moveTaskToBack(true);
         }
+        showLogin();
 
     }
 
+    private void showLogin() {
+        if(setupInicial()) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private boolean setupInicial() {
+        //chequeo si esta configurado como TESTMODE y si tiene URL para poder loguearse
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String codigoSucursal = sharedPref.getString("codigoSucursal", "");
+        Boolean TestMode = sharedPref.getBoolean("TestMode", Boolean.FALSE);
+        String serviceURL = sharedPref.getString("servicesUrl", "");
+        if ((TestMode && serviceURL.isEmpty())|| (!TestMode && codigoSucursal.isEmpty()))
+        {
+            return Boolean.FALSE;
+        } else{
+            return Boolean.TRUE;
+        }
+
+
+    }
 
 
     private void restartServices() {

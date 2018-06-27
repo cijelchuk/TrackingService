@@ -26,7 +26,6 @@
     </string-array>
 
 
-
     <string name="pref_title_system_sync_settings">System sync settings</string>
     <string name="preferences">Preferences</string>
     <string name="refresh">Refresh</string>
@@ -65,4 +64,31 @@
         <item>60</item>
         <item>0</item>
     </string-array>
- </resources>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">User</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="usuarioGAM">trackingSD</string>
+
+    <string-array name="pref_workingdays_values">
+        <item>LV</item>
+        <item>LS</item>
+        <item>LD</item>
+    </string-array>
+
+    <string-array name="pref_workingdays_titles">
+        <item>Lunes a Viernes</item>
+        <item>Lunes a Sabados</item>
+        <item>Lunes a Domingo</item>
+    </string-array>
+</resources>

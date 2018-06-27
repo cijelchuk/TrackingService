@@ -14,8 +14,12 @@ import android.util.Log;
 import com.google.common.base.Strings;
 
 import java.sql.Time;
+import java.text.DateFormatSymbols;
+import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class trackSrv extends Service{
     private static final String TAG = "RIBEIRO_trackSrv";
@@ -64,13 +68,42 @@ public class trackSrv extends Service{
         Log.d(TAG,"initial time:"+ initialTime.toString());
         Log.d(TAG,"ending time:"+ endingTime.toString());
 
-        if ( initialTime.before( nowDate ) && endingTime.after(nowDate)) {
-            Log.d(TAG, "Traking period is enabled.");
-            return Boolean.TRUE;
-        } else {
-            Log.d(TAG, "Tracking period is disabled.");
-            return Boolean.FALSE;
+        String workingDays = sharedPref.getString("workingDays", "");
+        Boolean dayOfWeekOK = Boolean.FALSE;
+        int dayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+
+        switch (workingDays){
+            case "LD": //lunes a domingo
+                dayOfWeekOK = Boolean.TRUE;
+                break;
+
+            case "LS": //lunes a sabados
+                if (dayOfWeek >= Calendar.MONDAY && dayOfWeek <= Calendar.SATURDAY){
+                    dayOfWeekOK = Boolean.TRUE;
+                }else{
+                    return Boolean.FALSE;
+                }
+                break;
+            default: //Lunes a Viernes
+                if (dayOfWeek >= Calendar.MONDAY && dayOfWeek <= Calendar.FRIDAY){
+                    dayOfWeekOK = Boolean.TRUE;
+                }else{
+                    return Boolean.FALSE;
+                }
         }
+        String weekdays[] = new DateFormatSymbols(Locale.US).getWeekdays();
+        Log.d(TAG, "Working day enabled: "+ workingDays + " today is: " + weekdays[dayOfWeek]);
+        if (dayOfWeekOK) {
+            if (initialTime.before(nowDate) && endingTime.after(nowDate)) {
+                Log.d(TAG, "Traking period is enabled.");
+                return Boolean.TRUE;
+            } else {
+                Log.d(TAG, "Tracking period is disabled.");
+                return Boolean.FALSE;
+            }
+        }
+        //algo raroooo
+        return Boolean.FALSE;
     }
     private void saveLocationError(Location location, String message){
         //check if time is enabled

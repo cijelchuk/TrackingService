@@ -1,6 +1,9 @@
 package com.ribeiro.trackingservice;
 
+import android.os.Message;
+import android.util.JsonReader;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,10 +23,118 @@ import java.net.URL;
 
 class RestService {
     private static final String TAG = "RIBEIRO_RestService";
+    private static String message;
     private URL EndPoint ;
     private String HTTPMethod;
 
+    public static String getMessage() {
+        return message;
+    }
 
+    public static void setMessage(String message) {
+        RestService.message = message;
+    }
+
+    public Boolean  getAccessToken(String userName, String userPassword){
+        //formateo los datos a enviar
+        //client_id=67d198a7569d479c8885f4fa90a26f46&client_secret=a4d3c5b870f545cc95b79d4dfd484fa8&granttype=password&scope=FullControl&username=admin&password=admin123
+        String loginData = "";
+        loginData = "client_id=c0aef316874948ccb0cbefbc64797fae&client_secret=0c52fdcac4a148aa80a64110a83d932a78c82f0c044948a8a9f8ba30be751cbb&granttype=password&scope=FullControl&username="+userName.trim()+"&password="+userPassword.trim();
+        // Create connection
+        HttpURLConnection myConnection = null;
+        try {
+            myConnection = (HttpURLConnection) EndPoint.openConnection();
+            Log.d(TAG, "Se crea Conexion...");
+        } catch (IOException e) {
+            Log.d(TAG, e.getMessage());
+            setMessage(e.getMessage());
+            return Boolean.FALSE;
+        }
+        myConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        myConnection.setRequestProperty("GENEXUS-AGENT", "SmartDevice Application");
+        try {
+            myConnection.setRequestMethod("POST");
+            Log.d(TAG, "Setea Method...");
+        } catch (ProtocolException e) {
+            Log.d(TAG, e.getMessage());
+            setMessage(e.getMessage());
+            return Boolean.FALSE;
+        }
+
+        Log.d(TAG,loginData);
+
+        try {
+            // Success
+            // Further processing here
+            // Enable writing
+            Log.d(TAG,"Enviando Informacion...");
+            myConnection.setDoOutput(true);
+            OutputStream outputStream = new BufferedOutputStream(myConnection.getOutputStream());
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
+            writer.write(loginData);
+            writer.flush();
+            writer.close();
+            outputStream.close();
+            JSONObject jsonObject = new JSONObject();
+            JSONObject respuestaJSON = new JSONObject();
+            InputStream inputStream;
+            // get stream
+            if (myConnection.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+                inputStream = myConnection.getInputStream();
+            } else {
+                inputStream = myConnection.getErrorStream();
+            }
+            // parse stream
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String temp, response = "";
+            while ((temp = bufferedReader.readLine()) != null) {
+                response += temp;
+            }
+            // put into JSONObject
+            try {
+                jsonObject.put("Content", response);
+                jsonObject.put("Message", myConnection.getResponseMessage());
+                jsonObject.put("Length", myConnection.getContentLength());
+                jsonObject.put("Type", myConnection.getContentType());
+                //response = response.replace("\"","");
+                respuestaJSON.put("Content", response);
+
+                Log.d(TAG, "respuesta:" + response);
+
+                String content = respuestaJSON.getString("Content");
+                JSONObject contentObject = new JSONObject(content);
+                String Token = contentObject.optString("access_token");
+                String scope = contentObject.optString("scope");
+                String refresh_token = contentObject.optString("refresh_token");
+                String user_guid = contentObject.optString("user_guid");
+                if (Token.isEmpty()) {
+                    String error = contentObject.optString("error");
+                    JSONObject errorObject = new JSONObject(error);
+                    String msg = errorObject.optString("message");
+                    Log.d(TAG, "datos:" + message );
+                    setMessage(msg);
+                    return Boolean.FALSE;
+
+                }else {
+
+                    Log.d(TAG, "datos:" + Token + scope + refresh_token + user_guid);
+
+                    return Boolean.TRUE;
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                setMessage(e.getMessage());
+                return Boolean.FALSE;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(TAG, "Error...");
+            setMessage(e.getMessage());
+            return Boolean.FALSE;
+        }
+    }
     public void RestService(String endPoint, String httpMethod){
         setEndPoint(endPoint);
         setHTTPMethod(httpMethod);

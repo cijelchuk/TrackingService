@@ -65,6 +65,16 @@
         android:summary="GPS time in minutes"
         android:title="GPS Time" />
 
+    <ListPreference
+        android:id="@+id/workingDays"
+        android:defaultValue="LV"
+        android:key="workingDays"
+        android:entries="@array/pref_workingdays_titles"
+        android:entryValues="@array/pref_workingdays_values"
+        android:persistent="true"
+        android:summary="Working Days"
+        android:title="Working Days" />
+
     <EditTextPreference
         android:id="@+id/initialTime"
         android:defaultValue="9"
