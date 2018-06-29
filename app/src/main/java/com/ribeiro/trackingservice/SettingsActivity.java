@@ -132,7 +132,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
-                || DataSyncPreferenceFragment.class.getName().equals(fragmentName);
+                || DataSyncPreferenceFragment.class.getName().equals(fragmentName)
+                || ServicesPreferenceFragment.class.getName().equals(fragmentName)
+                || TrackingPreferenceFragment.class.getName().equals(fragmentName);
     }
 
 
@@ -153,13 +155,66 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("sync_frequency"));
-            bindPreferenceSummaryToValue(findPreference("servicesUrl"));
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static class TrackingPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_tracking);
+            setHasOptionsMenu(true);
+
+            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
+            // to their values. When their values change, their summaries are
+            // updated to reflect the new value, per the Android Design
+            // guidelines.
+
             bindPreferenceSummaryToValue(findPreference("GPSTime"));
             bindPreferenceSummaryToValue(findPreference("GPSDistance"));
             bindPreferenceSummaryToValue(findPreference("initialTime"));
             bindPreferenceSummaryToValue(findPreference("endingTime"));
-            bindPreferenceSummaryToValue(findPreference("codigoSucursal"));
             bindPreferenceSummaryToValue(findPreference("workingDays"));
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static class ServicesPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_services);
+            setHasOptionsMenu(true);
+
+            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
+            // to their values. When their values change, their summaries are
+            // updated to reflect the new value, per the Android Design
+            // guidelines.
+
+            bindPreferenceSummaryToValue(findPreference("servicesUrl"));
+            bindPreferenceSummaryToValue(findPreference("codigoSucursal"));
+            bindPreferenceSummaryToValue(findPreference("client_id"));
+            bindPreferenceSummaryToValue(findPreference("client_secret"));
+
         }
 
         @Override

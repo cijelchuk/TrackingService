@@ -1,0 +1,51 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:id="@+id/GPSDistance"
+        android:defaultValue="100"
+        android:entries="@array/pref_gps_distance_titles"
+        android:entryValues="@array/pref_gps_distance_values"
+        android:key="GPSDistance"
+        android:persistent="true"
+        android:summary="GPS Distance in meters"
+        android:title="GPS Distance" />
+
+    <ListPreference
+        android:id="@+id/GPSTime"
+        android:defaultValue="10"
+        android:key="GPSTime"
+        android:entries="@array/pref_gps_time_titles"
+        android:entryValues="@array/pref_gps_time_values"
+        android:persistent="true"
+        android:summary="GPS time in minutes"
+        android:title="GPS Time" />
+
+    <ListPreference
+        android:id="@+id/workingDays"
+        android:defaultValue="LV"
+        android:key="workingDays"
+        android:entries="@array/pref_workingdays_titles"
+        android:entryValues="@array/pref_workingdays_values"
+        android:persistent="true"
+        android:summary="Working Days"
+        android:title="Working Days" />
+
+    <EditTextPreference
+        android:id="@+id/initialTime"
+        android:defaultValue="9"
+        android:key="initialTime"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="Initial time to start tracking."
+        android:title="Initial Time" />
+
+    <EditTextPreference
+        android:id="@+id/endingTime"
+        android:defaultValue="18"
+        android:key="endingTime"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="Time to end tracking."
+        android:title="Ending Time" />
+</PreferenceScreen>

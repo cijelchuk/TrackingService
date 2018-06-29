@@ -4,7 +4,16 @@
 
     <header
         android:fragment="com.ribeiro.trackingservice.SettingsActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
+        android:icon="@drawable/ic_sync"
         android:title="@string/pref_header_data_sync" />
+    <header
+        android:fragment="com.ribeiro.trackingservice.SettingsActivity$ServicesPreferenceFragment"
+        android:icon="@drawable/ic_services"
+        android:title="@string/pref_header_Services" />
+
+    <header
+        android:fragment="com.ribeiro.trackingservice.SettingsActivity$TrackingPreferenceFragment"
+        android:icon="@drawable/ic_tracking"
+        android:title="@string/pref_header_Tracking" />
 
 </preference-headers>

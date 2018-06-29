@@ -1,0 +1,55 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:id="@+id/codigoSucursal"
+        android:defaultValue="019"
+        android:key="codigoSucursal"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="Codigo de Sucursal"
+        android:title="Codigo de Sucursal" />
+
+
+
+    <SwitchPreference
+        android:key="TestMode"
+        android:summaryOff="Test Mode OFF."
+        android:summaryOn="Test Mode ON."
+        android:switchTextOff="Set Test Mode OFF."
+        android:switchTextOn="Set Test Mode ON."
+        android:persistent="true"/>
+
+    <EditTextPreference
+        android:id="@+id/servicesUrl"
+        android:dependency="TestMode"
+        android:defaultValue="http://server/Comercial15i/rest/LocationHistory/"
+        android:key="servicesUrl"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="Service URL Summary..."
+        android:title="Services URL" />
+
+    <EditTextPreference
+        android:id="@+id/client_id"
+        android:dependency="TestMode"
+        android:defaultValue="67d198a7569d479c8885f4fa90a26f46"
+        android:key="client_id"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="GAM Client Id"
+        android:title="GAM Client Id" />
+
+    <EditTextPreference
+        android:id="@+id/client_secret"
+        android:dependency="TestMode"
+        android:defaultValue="a4d3c5b870f545cc95b79d4dfd484fa8"
+        android:key="client_secret"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="GAM Client Secret"
+        android:title="GAM Client Secret" />
+
+</PreferenceScreen>

@@ -24,6 +24,8 @@ import java.net.URL;
 class RestService {
     private static final String TAG = "RIBEIRO_RestService";
     private static String message;
+    private String client_id;
+    private String client_secret;
     private URL EndPoint ;
     private String HTTPMethod;
 
@@ -39,7 +41,7 @@ class RestService {
         //formateo los datos a enviar
         //client_id=67d198a7569d479c8885f4fa90a26f46&client_secret=a4d3c5b870f545cc95b79d4dfd484fa8&granttype=password&scope=FullControl&username=admin&password=admin123
         String loginData = "";
-        loginData = "client_id=c0aef316874948ccb0cbefbc64797fae&client_secret=0c52fdcac4a148aa80a64110a83d932a78c82f0c044948a8a9f8ba30be751cbb&granttype=password&scope=FullControl&username="+userName.trim()+"&password="+userPassword.trim();
+        loginData = "client_id="+client_id.trim()+"&client_secret="+client_secret.trim()+"&granttype=password&scope=FullControl&username="+userName.trim()+"&password="+userPassword.trim();
         // Create connection
         HttpURLConnection myConnection = null;
         try {
@@ -228,5 +230,21 @@ class RestService {
 
     public void setHTTPMethod(String HTTPMethod) {
         this.HTTPMethod = HTTPMethod;
+    }
+
+    public String getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
+    }
+
+    public String getClient_secret() {
+        return client_secret;
+    }
+
+    public void setClient_secret(String client_secret) {
+        this.client_secret = client_secret;
     }
 }

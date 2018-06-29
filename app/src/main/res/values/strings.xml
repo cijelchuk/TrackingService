@@ -79,6 +79,8 @@
         completions."
     </string>
     <string name="usuarioGAM">trackingSD</string>
+    <string name="pref_header_Services">Services URL and GAM</string>
+    <string name="pref_header_Tracking">Tracking</string>
 
     <string-array name="pref_workingdays_values">
         <item>LV</item>

@@ -44,6 +44,8 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
     private static final String TAG = "RIBEIRO_LoginAct";
     private String serviceURL;
+    private String client_id;
+    private String client_secret;
     private String loginError;
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -305,6 +307,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 RestService rs = new RestService();
                 rs.setHTTPMethod("POST");
                 rs.setEndPoint(serviceURL);
+                rs.setClient_id(client_id);
+                rs.setClient_secret(client_secret);
                 Boolean loginOk = Boolean.FALSE;
                 loginOk = rs.getAccessToken(mEmail, mPassword);
                 if (!loginOk) {
@@ -328,10 +332,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.d(TAG,"Test Mode Off");
                     Log.d(TAG,"Sucursal: " + codigoSucursal);
                 }
+                client_id = sharedPref.getString("client_id", "");
+                client_secret = sharedPref.getString("client_secret", "");
 
 
                 //  String serviceURL = syncConnPref; //"http://172.18.6.103/GeolocationTest.NetEnvironment/rest/LocationHistory/";
                 Log.d(TAG,"Service URL: "+serviceURL);
+                Log.d(TAG, "Client_id: "+ client_id);
+                Log.d(TAG, "Client_secret: "+ client_secret);
         }
 
         @Override
