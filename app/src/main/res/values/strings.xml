@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TrackingService</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -8,15 +8,17 @@
 
     <string name="pref_title_sync_frequency">Sync frequency</string>
     <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
+        <item>@string/sync_frequency15_minutes</item>
+        <item>@string/sync_frequency30_minutes</item>
+        <item>@string/sync_frequency1_hour</item>
+        <item>@string/sync_frequency3_hours</item>
+        <item>@string/sync_frequency6_hours</item>
+        <item>@string/sync_frequencyNever</item>
     </string-array>
 
-    <string-array name="pref_sync_frequency_values">
+
+
+    <string-array name="pref_sync_frequency_values" tools:ignore="MissingTranslation">
         <item>15</item>
         <item>30</item>
         <item>60</item>
@@ -32,14 +34,14 @@
     <string name="nothing_to_show">All data is sincronized...</string>
     <string name="restart_services">Restart Services</string>
     <string-array name="pref_gps_distance_titles">
-        <item>10 meters</item>
-        <item>50 meters</item>
-        <item>100 meters</item>
-        <item>1 Kilometer</item>
-        <item>0 meter</item>
+        <item>@string/gps_distance10_meters</item>
+        <item>@string/gps_distance50_meters</item>
+        <item>@string/gps_distance100_meters</item>
+        <item>@string/gps_distance1_Kilometer</item>
+        <item>@string/gps_distance0_meter</item>
     </string-array>
 
-    <string-array name="pref_gps_distance_values">
+    <string-array name="pref_gps_distance_values" tools:ignore="MissingTranslation">
         <item>10</item>
         <item>50</item>
         <item>100</item>
@@ -48,15 +50,15 @@
     </string-array>
 
     <string-array name="pref_gps_time_titles">
-        <item>1 minute</item>
-        <item>5 minutes</item>
-        <item>10 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>0 minute</item>
+        <item>@string/gps_time1_minute</item>
+        <item>@string/gps_time5_minutes</item>
+        <item>@string/gps_time10_minutes</item>
+        <item>@string/gps_time30_minutes</item>
+        <item>@string/gps_time1_hour</item>
+        <item>@string/gps_time0_minute</item>
     </string-array>
 
-    <string-array name="pref_gps_time_values">
+    <string-array name="pref_gps_time_values" tools:ignore="MissingTranslation">
         <item>1</item>
         <item>5</item>
         <item>10</item>
@@ -103,16 +105,36 @@
     <string name="initial_time_title">Initial Time</string>
     <string name="ending_time_summary">Time to end tracking.</string>
     <string name="ending_time_title">Ending Time</string>
+    <string name="sync_frequency30_minutes">30 minutes</string>
+    <string name="sync_frequency1_hour">1 hour</string>
+    <string name="sync_frequency3_hours">3 hours</string>
+    <string name="sync_frequency6_hours">6 hours</string>
+    <string name="sync_frequencyNever">Never</string>
+    <string name="sync_frequency15_minutes">15 minutes</string>
+    <string name="gps_distance10_meters">10 meters</string>
+    <string name="gps_distance50_meters">50 meters</string>
+    <string name="gps_distance100_meters">100 meters</string>
+    <string name="gps_distance1_Kilometer">1 kilometer</string>
+    <string name="gps_distance0_meter">0 meter</string>
+    <string name="gps_time1_minute">1 minute</string>
+    <string name="gps_time5_minutes">5 minutes</string>
+    <string name="gps_time10_minutes">10 minutes</string>
+    <string name="gps_time30_minutes">30 minutes</string>
+    <string name="gps_time1_hour">1 hour</string>
+    <string name="gps_time0_minute">0 minute</string>
+    <string name="workingday_Monday_Friday">Monday to Friday</string>
+    <string name="workingday_Monday_Saturday">Monday to Saturday</string>
+    <string name="workingday_AllWeek">All Week</string>
 
-    <string-array name="pref_workingdays_values">
+    <string-array name="pref_workingdays_values" tools:ignore="MissingTranslation">
         <item>LV</item>
         <item>LS</item>
         <item>LD</item>
     </string-array>
 
     <string-array name="pref_workingdays_titles">
-        <item>Lunes a Viernes</item>
-        <item>Lunes a Sabados</item>
-        <item>Lunes a Domingo</item>
+        <item>@string/workingday_Monday_Friday</item>
+        <item>@string/workingday_Monday_Saturday</item>
+        <item>@string/workingday_AllWeek</item>
     </string-array>
 </resources>

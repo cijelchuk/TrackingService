@@ -268,7 +268,7 @@ public class TrackingStatus extends AppCompatActivity
         }
 
         if (locationstxt.isEmpty()){
-            locationstxt = "nothing to show";
+            locationstxt = getString(R.string.nothing_to_show);
         }
         return locationstxt;
     }

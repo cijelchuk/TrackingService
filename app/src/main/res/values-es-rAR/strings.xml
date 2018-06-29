@@ -43,4 +43,24 @@
     <string name="initial_time_title">Horario Inicial</string>
     <string name="ending_time_summary">Horario Final (fin de tracking)</string>
     <string name="ending_time_title">Horario Final</string>
+    <string name="sync_frequency30_minutes">30 minutos</string>
+    <string name="sync_frequency1_hour">1 hora</string>
+    <string name="sync_frequency3_hours">3 horas</string>
+    <string name="sync_frequency6_hours">6 horas</string>
+    <string name="sync_frequencyNever">Nunca</string>
+    <string name="sync_frequency15_minutes">15 minutos</string>
+    <string name="gps_distance10_meters">10 metros</string>
+    <string name="gps_distance50_meters">50 metros</string>
+    <string name="gps_distance100_meters">100 metros</string>
+    <string name="gps_distance1_Kilometer">1000 metros</string>
+    <string name="gps_distance0_meter">0 metros</string>
+    <string name="gps_time1_minute">1 minuto</string>
+    <string name="gps_time5_minutes">5 minutos</string>
+    <string name="gps_time10_minutes">10 minutos</string>
+    <string name="gps_time30_minutes">30 minutos</string>
+    <string name="gps_time1_hour">1 hora</string>
+    <string name="gps_time0_minute">0 minutos</string>
+    <string name="workingday_Monday_Friday">Lunes a Viernes</string>
+    <string name="workingday_Monday_Saturday">Lunes a Sábados</string>
+    <string name="workingday_AllWeek">Toda la semana</string>
 </resources>
