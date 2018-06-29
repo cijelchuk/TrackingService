@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrackingService</string>
+    <string name="title_activity_settings">Configuraciones</string>
+    <string name="pref_header_data_sync">Sincronización</string>
+    <string name="pref_title_sync_frequency">Frecuencia</string>
+    <string name="pref_title_system_sync_settings">Configuraciones de Sincronización</string>
+    <string name="preferences">Configuraciones</string>
+    <string name="refresh">Refrescar</string>
+    <string name="nothing_to_show">Los datos estan sincronizados...</string>
+    <string name="restart_services">Reiniciar Servicios</string>
+    <string name="title_activity_login">Acceder</string>
+    <string name="prompt_email">Usuario</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Acceder</string>
+    <string name="action_sign_in_short">Acceder</string>
+    <string name="error_invalid_email">Usuario o Email inválido</string>
+    <string name="error_invalid_password">Contraseña inválida, es demasiado corta.</string>
+    <string name="error_incorrect_password">Contraseña incrorrecta.</string>
+    <string name="error_field_required">Este campo es obligatorio.</string>
+    <string name="permission_rationale">Se necesitan permisos para acceder a la lista de emails para auto completar.</string>
+    <string name="pref_header_Services">URL de servicios y GAM</string>
+    <string name="pref_header_Tracking">Tracking</string>
+    <string name="codigosucursalsummary">Código de Sucursal</string>
+    <string name="codigosucursaltitle">Código de Sucursal</string>
+    <string name="testmode_summary_off">Modo Test Inhabilitado.</string>
+    <string name="test_mode_sumary_on">Modo Test Habilitado.</string>
+    <string name="test_mode_switch_off">Inhabilitar Modo Test.</string>
+    <string name="test_mode_switch_on">Habilitar Modo Test.</string>
+    <string name="Service_URL_Summary">URL para acceder a servicios Rest.</string>
+    <string name="Services_URL_title">URL de Servicios Rest.</string>
+    <string name="GAM_Client_Id_summary">GAM Client Id</string>
+    <string name="GAM_Client_Id_title">GAM Client Id</string>
+    <string name="GAM_Client_Secret_summary">GAM Client Secret</string>
+    <string name="GAM_Client_Secret_title">GAM Client Secret</string>
+    <string name="gps_distance_summary">Distancia en metros mínima.</string>
+    <string name="gps_distance_title">Distancia Mínima GPS</string>
+    <string name="gps_time_summary">Tiempo mínimo GPS (en minutos)</string>
+    <string name="gps_time_title">Tiempo Mínimo GPS</string>
+    <string name="working_days_summary">Días Laborables</string>
+    <string name="working_days_title">Días Laborables</string>
+    <string name="initial_time_summary">Horario Inicial (comienzo de tracking)</string>
+    <string name="initial_time_title">Horario Inicial</string>
+    <string name="ending_time_summary">Horario Final (fin de tracking)</string>
+    <string name="ending_time_title">Horario Final</string>
+</resources>

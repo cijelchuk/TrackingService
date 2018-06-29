@@ -6,8 +6,8 @@
         android:entryValues="@array/pref_gps_distance_values"
         android:key="GPSDistance"
         android:persistent="true"
-        android:summary="GPS Distance in meters"
-        android:title="GPS Distance" />
+        android:summary="@string/gps_distance_summary"
+        android:title="@string/gps_distance_title" />
 
     <ListPreference
         android:id="@+id/GPSTime"
@@ -16,8 +16,8 @@
         android:entries="@array/pref_gps_time_titles"
         android:entryValues="@array/pref_gps_time_values"
         android:persistent="true"
-        android:summary="GPS time in minutes"
-        android:title="GPS Time" />
+        android:summary="@string/gps_time_summary"
+        android:title="@string/gps_time_title" />
 
     <ListPreference
         android:id="@+id/workingDays"
@@ -26,8 +26,8 @@
         android:entries="@array/pref_workingdays_titles"
         android:entryValues="@array/pref_workingdays_values"
         android:persistent="true"
-        android:summary="Working Days"
-        android:title="Working Days" />
+        android:summary="@string/working_days_summary"
+        android:title="@string/working_days_title" />
 
     <EditTextPreference
         android:id="@+id/initialTime"
@@ -36,8 +36,8 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:persistent="true"
-        android:summary="Initial time to start tracking."
-        android:title="Initial Time" />
+        android:summary="@string/initial_time_summary"
+        android:title="@string/initial_time_title" />
 
     <EditTextPreference
         android:id="@+id/endingTime"
@@ -46,6 +46,6 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:persistent="true"
-        android:summary="Time to end tracking."
-        android:title="Ending Time" />
+        android:summary="@string/ending_time_summary"
+        android:title="@string/ending_time_title" />
 </PreferenceScreen>

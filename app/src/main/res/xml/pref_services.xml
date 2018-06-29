@@ -6,17 +6,17 @@
         android:selectAllOnFocus="false"
         android:singleLine="true"
         android:persistent="true"
-        android:summary="Codigo de Sucursal"
-        android:title="Codigo de Sucursal" />
+        android:summary="@string/codigosucursalsummary"
+        android:title="@string/codigosucursaltitle" />
 
 
 
     <SwitchPreference
         android:key="TestMode"
-        android:summaryOff="Test Mode OFF."
-        android:summaryOn="Test Mode ON."
-        android:switchTextOff="Set Test Mode OFF."
-        android:switchTextOn="Set Test Mode ON."
+        android:summaryOff="@string/testmode_summary_off"
+        android:summaryOn="@string/test_mode_sumary_on"
+        android:switchTextOff="@string/test_mode_switch_off"
+        android:switchTextOn="@string/test_mode_switch_on"
         android:persistent="true"/>
 
     <EditTextPreference
@@ -27,8 +27,8 @@
         android:selectAllOnFocus="false"
         android:singleLine="true"
         android:persistent="true"
-        android:summary="Service URL Summary..."
-        android:title="Services URL" />
+        android:summary="@string/Service_URL_Summary"
+        android:title="@string/Services_URL_title" />
 
     <EditTextPreference
         android:id="@+id/client_id"
@@ -38,8 +38,8 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:persistent="true"
-        android:summary="GAM Client Id"
-        android:title="GAM Client Id" />
+        android:summary="@string/GAM_Client_Id_summary"
+        android:title="@string/GAM_Client_Id_title" />
 
     <EditTextPreference
         android:id="@+id/client_secret"
@@ -49,7 +49,7 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:persistent="true"
-        android:summary="GAM Client Secret"
-        android:title="GAM Client Secret" />
+        android:summary="@string/GAM_Client_Secret_summary"
+        android:title="@string/GAM_Client_Secret_title" />
 
 </PreferenceScreen>

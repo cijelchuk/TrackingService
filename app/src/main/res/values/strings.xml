@@ -29,7 +29,7 @@
     <string name="pref_title_system_sync_settings">System sync settings</string>
     <string name="preferences">Preferences</string>
     <string name="refresh">Refresh</string>
-    <string name="nothing_to_show">nothing to show...</string>
+    <string name="nothing_to_show">All data is sincronized...</string>
     <string name="restart_services">Restart Services</string>
     <string-array name="pref_gps_distance_titles">
         <item>10 meters</item>
@@ -78,9 +78,31 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="usuarioGAM">trackingSD</string>
+    <string name="usuarioGAM" translatable="false">trackingSD</string>
     <string name="pref_header_Services">Services URL and GAM</string>
     <string name="pref_header_Tracking">Tracking</string>
+    <string name="codigosucursalsummary">Branch Code</string>
+    <string name="codigosucursaltitle">Branch Code</string>
+    <string name="testmode_summary_off">Test Mode OFF.</string>
+    <string name="test_mode_sumary_on">Test Mode ON.</string>
+    <string name="test_mode_switch_off">Set Test Mode OFF.</string>
+    <string name="test_mode_switch_on">Set Test Mode ON.</string>
+    <string name="Service_URL_Summary">URL to access Rest Servies.</string>
+    <string name="Services_URL_title">Rest Services URL</string>
+    <string name="GAM_Client_Id_summary">GAM Client Id</string>
+    <string name="GAM_Client_Id_title">GAM Client Id</string>
+    <string name="GAM_Client_Secret_summary">GAM Client Secret</string>
+    <string name="GAM_Client_Secret_title">GAM Client Secret</string>
+    <string name="gps_distance_summary">Minimum GPS Distance in meters</string>
+    <string name="gps_distance_title">GPS Minimum Distance</string>
+    <string name="gps_time_summary">GPS minimum time (in minutes)</string>
+    <string name="gps_time_title">GPS Minimum Time</string>
+    <string name="working_days_summary">Working Days</string>
+    <string name="working_days_title">Working Days</string>
+    <string name="initial_time_summary">Initial time to start tracking.</string>
+    <string name="initial_time_title">Initial Time</string>
+    <string name="ending_time_summary">Time to end tracking.</string>
+    <string name="ending_time_title">Ending Time</string>
 
     <string-array name="pref_workingdays_values">
         <item>LV</item>
