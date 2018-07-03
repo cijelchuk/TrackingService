@@ -193,7 +193,7 @@ public class trackSrv extends Service{
             Log.d(TAG, "onStatusChanged: " + provider);
         }
     }
-
+//kjhk
     private LocationListener[] mLocationListeners = new LocationListener[] {
             new LocationListener(LocationManager.GPS_PROVIDER),
             new LocationListener(LocationManager.NETWORK_PROVIDER)
