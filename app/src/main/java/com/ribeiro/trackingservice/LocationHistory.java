@@ -6,6 +6,7 @@ import android.location.Location;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.UUID;
 
 
@@ -29,7 +30,8 @@ class LocationHistory {
         factory = new DeviceUuidFactory(context);
         this.setDeviceId(factory.getDeviceUuid().toString());
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateformat.setTimeZone(TimeZone.getTimeZone("gmt"));
         String datetime = dateformat.format(c.getTime());
         this.setDateTime(datetime);
         this.setLatitude(location.getLatitude());
