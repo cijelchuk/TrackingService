@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.PeriodicSync;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -66,12 +67,16 @@ public class TrackingStatus extends AppCompatActivity
     //variables para almacenar los permisos que se solicitan al usuario para ejecutar la app
     private static int REQUEST_LOCATION = 0;
     private static int REQUEST_READ_PHONE_STATE = 0;
-
+    private static Boolean ultimaVersion = Boolean.FALSE;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    //chequeo  version
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ultimaVersion = Boolean.TRUE;
+        }
         boolean hasPermission = false;
 
 
@@ -134,7 +139,11 @@ public class TrackingStatus extends AppCompatActivity
 
         checkPermission();
         if (REQUEST_READ_PHONE_STATE == 1 && REQUEST_LOCATION == 1){
-            startService(new Intent(this, trackSrv.class));
+            if (!ultimaVersion) {
+                startService(new Intent(this, trackSrv.class));
+            }else {
+                startService(new Intent(this, trackSrv2.class));
+            }
             // Ensure the right menu is setup
             moveTaskToBack(true);
         }
@@ -191,9 +200,15 @@ public class TrackingStatus extends AppCompatActivity
             Log.d(TAG, "Error Restarting Sync Service: "+ e.getMessage());
         }
         try {
-            message += "Restarting Tracking Service" +   System.getProperty ("line.separator");
-            getApplicationContext().stopService(new Intent(this, trackSrv.class));
-            startService(new Intent(this, trackSrv.class));
+            if (!ultimaVersion) {
+                message += "Restarting Tracking Service" + System.getProperty("line.separator");
+                getApplicationContext().stopService(new Intent(this, trackSrv.class));
+                startService(new Intent(this, trackSrv.class));
+            }else {
+                message += "Restarting Tracking Service2" + System.getProperty("line.separator");
+                getApplicationContext().stopService(new Intent(this, trackSrv2.class));
+                startService(new Intent(this, trackSrv2.class));
+            }
 
         }catch (Exception e){
             Log.d(TAG, "Error Restarting Tracking Service: "+ e.getMessage());

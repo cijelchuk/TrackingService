@@ -130,7 +130,7 @@ public class trackSrv extends Service{
         //check if time is enabled
         if (timeIsEnabled()) {
             //creates a LocationHistory Class with the assigned Location
-            String message = "ok";
+            String message = "provider: " + location.getProvider();
             LocationHistory loc = new LocationHistory(location, message, getApplicationContext());
 
             //inserta el registro en la bb local.
@@ -222,6 +222,7 @@ public class trackSrv extends Service{
         String GPSTime = "";
         GPSDistance = sharedPref.getString("GPSDistance", "");
         GPSTime = sharedPref.getString("GPSTime", "");
+        Log.d(TAG, "created Listener with parameters Distance: " + GPSDistance + "meters & Time: " + GPSTime + " minute.") ;
         if(!Strings.isNullOrEmpty(GPSDistance)) {
             LOCATION_DISTANCE = Float.valueOf(GPSDistance);
         }

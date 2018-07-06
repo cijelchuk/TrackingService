@@ -214,6 +214,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("codigoSucursal"));
             bindPreferenceSummaryToValue(findPreference("client_id"));
             bindPreferenceSummaryToValue(findPreference("client_secret"));
+            bindPreferenceSummaryToValue(findPreference("masterPassword"));
 
         }
 

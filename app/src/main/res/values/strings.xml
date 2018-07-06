@@ -125,6 +125,12 @@
     <string name="workingday_Monday_Friday">Monday to Friday</string>
     <string name="workingday_Monday_Saturday">Monday to Saturday</string>
     <string name="workingday_AllWeek">All Week</string>
+    <string name="EnableGAM_summary_off">GAM Disabled</string>
+    <string name="EnableGAM_sumary_on">Enable GAM</string>
+    <string name="EnableGAM_switch_off">Set GAM integration Disabled</string>
+    <string name="EnableGAM_switch_on">Set GAM integration Enabled</string>
+    <string name="masterPassword_summary">Administrator Password</string>
+    <string name="masterPassword_title">Administrator Password</string>
 
     <string-array name="pref_workingdays_values" tools:ignore="MissingTranslation">
         <item>LV</item>

@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         //populateAutoComplete();
 
+
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -297,24 +298,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //                    return pieces[1].equals(mPassword);
 //                }
 //            }
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            Boolean GAMEnabled = sharedPref.getBoolean("EnableGAM", Boolean.FALSE);
+            String masterPassword = sharedPref.getString("masterPassword", "");
             mPasswordView.setError(null);
             View focusView = null;
-            configureServiceURL();
-            if (serviceURL.isEmpty()) {
-                //no hay nada configurado lo dejo entrar
-                return true;
-            }else {
-                RestService rs = new RestService();
-                rs.setHTTPMethod("POST");
-                rs.setEndPoint(serviceURL);
-                rs.setClient_id(client_id);
-                rs.setClient_secret(client_secret);
-                Boolean loginOk = Boolean.FALSE;
-                loginOk = rs.getAccessToken(mEmail, mPassword);
-                if (!loginOk) {
-                    setLoginError(rs.getMessage());
+            if (GAMEnabled) {
+                configureServiceURL();
+                if (serviceURL.isEmpty()) {
+                    //no hay nada configurado lo dejo entrar
+                    return true;
+                } else {
+                    RestService rs = new RestService();
+                    rs.setHTTPMethod("POST");
+                    rs.setEndPoint(serviceURL);
+                    rs.setClient_id(client_id);
+                    rs.setClient_secret(client_secret);
+                    Boolean loginOk = Boolean.FALSE;
+                    loginOk = rs.getAccessToken(mEmail, mPassword);
+                    if (!loginOk) {
+                        setLoginError(rs.getMessage());
+                    }
+                    return loginOk;
                 }
-                return loginOk;
+            }else{
+               if  (mPassword.trim().equals(masterPassword) ){
+                   return Boolean.TRUE;
+               }else{
+                   setLoginError(getString(R.string.error_incorrect_password));
+                   return Boolean.FALSE;
+               }
             }
         }
 

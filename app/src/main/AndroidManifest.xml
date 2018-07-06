@@ -11,10 +11,10 @@
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <!-- To auto-complete the email text field in the login form with the user's emails
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />-->
 
     <application
         android:allowBackup="true"
@@ -38,6 +38,9 @@
         <service
             android:name=".trackSrv"
             android:process=":trackingService" />
+        <service
+            android:name=".trackSrv2"
+            android:process=":trackingService2" />
         <service android:name=".AuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />

@@ -63,4 +63,10 @@
     <string name="workingday_Monday_Friday">Lunes a Viernes</string>
     <string name="workingday_Monday_Saturday">Lunes a Sábados</string>
     <string name="workingday_AllWeek">Toda la semana</string>
+    <string name="EnableGAM_summary_off">Deshabilitar GAM</string>
+    <string name="EnableGAM_sumary_on">Habilitar GAM</string>
+    <string name="EnableGAM_switch_off">Desabilitar GAM</string>
+    <string name="EnableGAM_switch_on">Habilitar GAM</string>
+    <string name="masterPassword_summary">Contraseña de Administrador</string>
+    <string name="masterPassword_title">Contraseña de Administrador</string>
 </resources>

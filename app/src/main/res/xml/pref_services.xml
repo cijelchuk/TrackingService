@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
         android:id="@+id/codigoSucursal"
-        android:defaultValue="019"
+        android:defaultValue="\019"
         android:key="codigoSucursal"
         android:selectAllOnFocus="false"
         android:singleLine="true"
@@ -9,9 +9,28 @@
         android:summary="@string/codigosucursalsummary"
         android:title="@string/codigosucursaltitle" />
 
+    <SwitchPreference
+        android:id="@+id/EnableGAM"
+        android:key="EnableGAM"
+        android:disableDependentsState="true"
+        android:summaryOff="@string/EnableGAM_summary_off"
+        android:summaryOn="@string/EnableGAM_sumary_on"
+        android:switchTextOff="@string/EnableGAM_switch_off"
+        android:switchTextOn="@string/EnableGAM_switch_on"
+        android:persistent="true"/>
 
+    <EditTextPreference
+        android:id="@+id/masterPassword"
+        android:dependency="EnableGAM"
+        android:key="masterPassword"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:persistent="true"
+        android:summary="@string/masterPassword_summary"
+        android:title="@string/masterPassword_title" />
 
     <SwitchPreference
+        android:id="@+id/TestMode"
         android:key="TestMode"
         android:summaryOff="@string/testmode_summary_off"
         android:summaryOn="@string/test_mode_sumary_on"
